@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.net.URL;
+import java.security.MessageDigest;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -28,6 +29,7 @@ public class App {
 
         //Q1  hashrate
         double localHashrate = new HashRateEstimator(5000,5).estimate();
+        System.out.println(localHashrate);
 
         // Q2: latest  block  from mainet (bitcoin blockchain) and its predecessor
         Context context   = new Context(new UnitTestParams()); // required  for working with bitcoinj
