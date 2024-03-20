@@ -68,18 +68,23 @@ public class Explorer {
 
     // TODO
     public String getLatestHash(){
-        return "";
+        return "" + request("latestblock").hashCode();
     }
 
 
-    // TODO 
+    // TODO
     /**
      * Return the raw bytes of the block whose hash is given as argument
      * @param hash of a valid block contained in bitcoin mainnet
      * @return byte array encoding the block
      */
     public byte[] getRawblockFromHash(String hash){
-        return null;
+        System.out.println("BABY");
+        System.out.println(hash);
+        byte[] bytes = hexStringToByte(request("rawblock/" + hash));
+        System.out.println("BABY2");
+
+        return bytes;
     }
 
     // TODO
@@ -92,6 +97,10 @@ public class Explorer {
      */
 	
     public Block getBlockFromHash(NetworkParameters params, String hash){
+        byte[] rawBlock = getRawblockFromHash(hash);
+        if(rawBlock != null)
+            return fromRawblockToBlock(params, rawBlock);
+
         return null;
     }
 
