@@ -61,11 +61,41 @@ public class App {
         // TODO : mine a new block
 
 
+        //Q5
+        System.out.println("\nQ5");
+        System.out.println("Non, ");
 
 
 
-        System.out.println("\n");
+        //Q6
+        System.out.println("\nQ6");
+
+
+
+        //Q7
+        System.out.println("\nQ7");
+        //en utilisant le site https://www.stelareum.io/mining/gpu.html j'ai obtenu les hashrates de ma carte graphique
+        long hashrate = 45_000_000; // 45 MH/s
+        BigInteger difficulty = BigInteger.valueOf(2).pow(20);
+        long expectedTimeSeconds = ImpactUtils.expectedMiningTime(hashrate, difficulty);
+        double years = expectedTimeSeconds / (365.25 * 24 * 3600);
+        System.out.println("Temps moyen pour miner un bloc sur ma machine : " + years + " années");
+
+
+        // Q8
+        System.out.println("\nQ8");
+        BigInteger currentDifficulty = latestBlock.getDifficultyTargetAsInteger();
+        double networkHashrate = ImpactUtils.networkHashrate(currentDifficulty);
+        System.out.println("Hashrate actuel du réseau : " + networkHashrate + " h/s");
+
         // Q9/Q10 energy w/ most profitable hardware
+        System.out.println("\nQ9/Q10");
+        double c = 100;
+        double p = 2000;
+        double energyConsumed = ImpactUtils.energyConsumedLast24h(c, p);
+        System.out.println("Énergie consommée par le réseau bitcoin dans les dernières 24h: " + energyConsumed + " kWh");
+
+
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(YearMonth.class,new YearMonthAdapter())
                 .create();
@@ -78,7 +108,6 @@ public class App {
         } catch (Exception e) {
             System.err.println("error opening/reading hardware.json "+ e.getMessage());
         }
-
 
 
     }
