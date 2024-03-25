@@ -63,19 +63,23 @@ public class App {
 
         //Q5
         System.out.println("\nQ5");
-        System.out.println("Non, ");
+        System.out.println("Non, mon bloc ne serait pas accepté par le " +
+                "réseau car il ne répond pas à la difficulté actuelle du réseau Bitcoin " +
+                "et manque la preuve de travail valide requise.");
 
 
 
         //Q6
         System.out.println("\nQ6");
-
+        //en utilisant le site https://www.stelareum.io/mining/gpu.html j'ai obtenu les hashrates de ma carte graphique
+        long hashrate = 45_000_000; // 45 MH/s
+        System.out.println("Avec un hashrate de 45 MH/s et le niveau de difficulté donné, " +
+                "il me faudrait des années pour miner un bloc seul");
 
 
         //Q7
         System.out.println("\nQ7");
-        //en utilisant le site https://www.stelareum.io/mining/gpu.html j'ai obtenu les hashrates de ma carte graphique
-        long hashrate = 45_000_000; // 45 MH/s
+
         BigInteger difficulty = BigInteger.valueOf(2).pow(20);
         long expectedTimeSeconds = ImpactUtils.expectedMiningTime(hashrate, difficulty);
         double years = expectedTimeSeconds / (365.25 * 24 * 3600);
@@ -86,7 +90,7 @@ public class App {
         System.out.println("\nQ8");
         BigInteger currentDifficulty = latestBlock.getDifficultyTargetAsInteger();
         double networkHashrate = ImpactUtils.networkHashrate(currentDifficulty);
-        System.out.println("Hashrate actuel du réseau : " + networkHashrate + " h/s");
+        System.out.println("Hashrate du réseau : " + networkHashrate + " h/s");
 
         // Q9/Q10 energy w/ most profitable hardware
         System.out.println("\nQ9/Q10");
