@@ -68,7 +68,7 @@ public class Explorer {
 
     // TODO
     public String getLatestHash(){
-        return "" + request("latestblock").hashCode();
+        return request("q/latesthash");
     }
 
 
@@ -79,12 +79,7 @@ public class Explorer {
      * @return byte array encoding the block
      */
     public byte[] getRawblockFromHash(String hash){
-        System.out.println("BABY");
-        System.out.println(hash);
-        byte[] bytes = hexStringToByte(request("rawblock/" + hash));
-        System.out.println("BABY2");
-
-        return bytes;
+        return hexStringToByte(request("rawblock/"+ hash +"?format=hex"));
     }
 
     // TODO
@@ -100,7 +95,6 @@ public class Explorer {
         byte[] rawBlock = getRawblockFromHash(hash);
         if(rawBlock != null)
             return fromRawblockToBlock(params, rawBlock);
-
         return null;
     }
 

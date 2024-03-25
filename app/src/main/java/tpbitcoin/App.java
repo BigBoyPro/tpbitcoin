@@ -14,6 +14,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
+import java.math.BigInteger;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.time.YearMonth;
@@ -28,25 +29,39 @@ public class App {
     public static void main(String[] args) {
 
         //Q1  hashrate
+        System.out.println("\nQ1:");
         double localHashrate = new HashRateEstimator(500,5).estimate();
+        System.out.print("Hashrate: ");
         System.out.println(localHashrate);
 
         // Q2: latest  block  from mainet (bitcoin blockchain) and its predecessor
         Context context   = new Context(new UnitTestParams()); // required  for working with bitcoinj
         Explorer explorer = new Explorer(); // for interacting with blockchain.info API
+        String latestBlockHash = explorer.getLatestHash();
+        Block latestBlock = explorer.getBlockFromHash(context.getParams(), latestBlockHash);
 
-        Block latestBlock = explorer.getBlockFromHash(context.getParams(), explorer.getLatestHash());
-
-        System.out.println("Nonce: " + latestBlock.getNonce());
-        System.out.println("Niveau de difficulté: " + latestBlock.getDifficultyTargetAsInteger());
+        System.out.println("\nQ2:");
+        System.out.print("Nonce: ");
+        System.out.println(latestBlock.getNonce());
+        System.out.print("Niveau de difficulté: ");
+        System.out.println(latestBlock.getDifficultyTargetAsInteger());
 
         // Q3 Some TXs
+        System.out.println("\nQ3:");
+        System.out.print("Transaction 1: ");
+        System.out.println(latestBlock.getTransactions().get(0).getHashAsString());
+        System.out.print("Transaction 2: ");
+        System.out.println(latestBlock.getTransactions().get(1).getHashAsString());
+
 
         // Q4 Mine a new block
         Miner miner = new Miner(context.getParams());
         // empty list of tx since creating txs, even fake ones, requires some work
         ArrayList<Transaction> txs = new ArrayList<>();
         // TODO : mine a new block
+
+
+
 
 
         System.out.println("\n");
