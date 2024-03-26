@@ -26,7 +26,14 @@ public class App {
 
     public static void main(String[] args) {
 
+
         // Q1 hashrate
+        System.out.println("****************************************\n" +
+                "\tLaeticia HAKEM & Wassim BAGHDADI\n" +
+                "****************************************"
+        );
+
+
         System.out.println("\nQ1");
         double estimatedHashrate = new HashRateEstimator(500,5).estimate();
         System.out.print("Hashrate: ");
@@ -57,19 +64,17 @@ public class App {
 
         // Q5
         System.out.println("\nQ5");
-        System.out.println("Non, mon bloc ne serait pas accepté par le réseau car il ne répond pas à la difficulté actuelle du réseau Bitcoin et manque la preuve de travail valide requise.");
+        System.out.println("Non, mon bloc ne serait pas accepté par le réseau car il ne répond pas à la difficulté actuelle du " +
+                "réseau Bitcoin et manque la preuve de travail valide requise.");
 
-        // Q6
-        System.out.println("\nQ6");
+        // Q6/Q7
+        System.out.println("\nQ6/Q7");
         long gpuHashrate = 45_000_000; // 45 MH/s
         System.out.println("Avec un hashrate de 45 MH/s et le niveau de difficulté donné, il me faudrait des années pour miner un bloc seul");
-
-        // Q7
-        System.out.println("\nQ7");
         BigInteger difficulty = BigInteger.valueOf(2).pow(20);
         long predictedTimeSeconds = ImpactUtils.expectedMiningTime(gpuHashrate, difficulty);
         double estimatedYears = predictedTimeSeconds / (365.25 * 24 * 3600);
-        System.out.print("Temps moyen pour miner un bloc sur ma machine : ");
+        System.out.print("Temps moyen pour miner un seul bloc sur ma machine : ");
         System.out.println(estimatedYears + " years");
 
         // Q8
