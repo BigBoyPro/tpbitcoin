@@ -54,7 +54,6 @@ public class App {
         // Q4 Mine a new block
         Miner miner = new Miner(context.getParams());
         ArrayList<Transaction> txs = new ArrayList<>();
-        // TODO: mine a new block
 
         // Q5
         System.out.println("\nQ5");
